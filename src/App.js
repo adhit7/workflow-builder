@@ -20,7 +20,7 @@ const App = () => {
           <Fragment>
               <nav>
                   <div className="nav-wrapper blue" style={{paddingLeft:"12px"}}>
-                      <a href="#" className="brand-logo">Workflow Builder</a>
+                      <a href="/" className="brand-logo">Workflow Builder</a>
                   </div>
               </nav>
               <div className="container">
