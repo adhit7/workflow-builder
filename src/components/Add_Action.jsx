@@ -3,6 +3,8 @@ import {useDispatch} from "react-redux";
 import {addActions} from "../redux/actions/actionsAction";
 
 const Add_Action = () => {
+    const [name,setname] = useState('');
+    const [id,setid] = useState(0);
     const [email, setemail] = useState({
         from: '',
         to: [],
@@ -22,13 +24,18 @@ const Add_Action = () => {
     const dispatch = useDispatch();
 
     const onSubmit = () => {
+        setid(id+1);
         const newAction = {
+            id,
+            name,
             email,
             meeting,
             remainder,
             date: new Date()
         }
         dispatch(addActions(newAction));
+
+        setname('');
 
         setemail({
             from: '',
@@ -58,6 +65,10 @@ const Add_Action = () => {
                 <h4>Action</h4>
                 <div className="row">
                     <div className="col s12 m12">
+                        <div className="input-field">
+                            <input type="text" name="message" value={name} onChange={e => setname(e.target.value)}/>
+                            <label htmlFor="message" className="active">Name</label>
+                        </div>
                         <div className="card">
                             <div className="card-content">
                                 <span className="card-title">Email</span>
@@ -78,8 +89,8 @@ const Add_Action = () => {
                                         <label htmlFor="message" className="active">Body</label>
                                     </div>
                             </div>
-                            <div className="card-action center-align">
-                                <a href="#">Send</a>
+                            <div className="card-action center-align modal-close">
+                                <a href="#" onClick={onSubmit}>Send</a>
                             </div>
                         </div>
                     </div>
@@ -100,8 +111,8 @@ const Add_Action = () => {
                                     <label htmlFor="message" className="active">Location</label>
                                 </div>
                             </div>
-                            <div className="card-action center-align">
-                                <a href="#">Send</a>
+                            <div className="card-action center-align modal-close">
+                                <a href="#" onClick={onSubmit}>Send</a>
                             </div>
                         </div>
                     </div>
@@ -122,8 +133,8 @@ const Add_Action = () => {
                                     <label htmlFor="message" className="active">Remainder</label>
                                 </div>
                             </div>
-                            <div className="card-action center-align">
-                                <a href="#">Send</a>
+                            <div className="card-action center-align modal-close">
+                                <a href="#" onClick={onSubmit}>Send</a>
                             </div>
                         </div>
                     </div>

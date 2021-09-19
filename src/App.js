@@ -5,8 +5,9 @@ import Home from "./components/Home";
 import Add_Action from "./components/Add_Action";
 import Add from "./layout/Add";
 import {Provider} from "react-redux";
-import store from "./store";
+import {store} from "./store";
 import './App.css';
+import Edit_Action from "./components/Edit_Action";
 
 const App = () => {
 
@@ -18,7 +19,7 @@ const App = () => {
       <Provider store={store}>
           <Fragment>
               <nav>
-                  <div className="nav-wrapper blue" style={{padding:'.3rem .5rem'}}>
+                  <div className="nav-wrapper blue" style={{paddingLeft:"12px"}}>
                       <a href="#" className="brand-logo">Workflow Builder</a>
                   </div>
               </nav>
@@ -26,6 +27,7 @@ const App = () => {
                   <Add/>
                   <Home/>
                   <Add_Action/>
+                  <Edit_Action />
               </div>
           </Fragment>
       </Provider>

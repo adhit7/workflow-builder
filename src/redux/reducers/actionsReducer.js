@@ -1,4 +1,4 @@
-import {ADD_ACTION, DELETE_ACTION, GET_ACTIONS, UPDATE_ACTION} from "../actions/types";
+import {ADD_ACTION, DELETE_ACTION, GET_ACTIONS, SET_CURRENT, UPDATE_ACTION} from "../actions/types";
 
 const initialState = {
     messages:[],
@@ -20,6 +20,11 @@ export default(state = initialState, action) => {
             return {
                 ...state,
                 messages: state.messages.map(message => message.id === action.payload.id ? action.payload : message)
+            }
+        case SET_CURRENT:
+            return{
+                ...state,
+                current:action.payload
             }
         case DELETE_ACTION:
             return {

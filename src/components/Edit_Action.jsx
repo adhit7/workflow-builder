@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateAction} from "../redux/actions/actionsAction";
 
 const Edit_Action = () => {
+    const [name,setname] = useState('');
     const [email, setemail] = useState({
         from: '',
         to: [],
@@ -23,17 +24,30 @@ const Edit_Action = () => {
     const current = useSelector(state => state.workflow.current);
 
     useEffect(()=>{
-        if(current){
-            setemail(current.email);
-            setmeeting(current.meeting);
-            setremainder(current.remainder);
+        if(current.length !== 0){
+            setname(current.name);
+            setemail({
+                from: current.email.from,
+                to: current.email.to,
+                subject: current.email.subject,
+                body: current.email.body
+            });
+            setmeeting({
+                from: current.meeting.from,
+                to: current.meeting.to,
+                meeting: current.meeting.meeting
+            });
+            setremainder({
+                from: current.remainder.from,
+                to: current.remainder.to,
+                reminder: current.remainder.reminder
+            });
         }
-        console.log(current);
     },[current]);
 
     const onSubmit = () => {
-
         const update = {
+            name,
             email,
             meeting,
             remainder,
@@ -43,6 +57,8 @@ const Edit_Action = () => {
 
         dispatch(updateAction(update));
 
+
+        setname('');
         setemail({
             from: '',
             to: [],
@@ -70,6 +86,10 @@ const Edit_Action = () => {
                 <h4>Action</h4>
                 <div className="row">
                     <div className="col s12 m12">
+                        <div className="input-field">
+                            <input type="text" name="message" value={name} onChange={e => setname(e.target.value)}/>
+                            <label htmlFor="message" className="active">Name</label>
+                        </div>
                         <div className="card">
                             <div className="card-content">
                                 <span className="card-title">Email</span>
@@ -90,8 +110,8 @@ const Edit_Action = () => {
                                     <label htmlFor="message" className="active">Body</label>
                                 </div>
                             </div>
-                            <div className="card-action center-align">
-                                <a href="#">Send</a>
+                            <div className="card-action center-align modal-close">
+                                <a href="#" onClick={onSubmit}>Send</a>
                             </div>
                         </div>
                     </div>
@@ -112,8 +132,8 @@ const Edit_Action = () => {
                                     <label htmlFor="message" className="active">Location</label>
                                 </div>
                             </div>
-                            <div className="card-action center-align">
-                                <a href="#">Send</a>
+                            <div className="card-action center-align modal-close">
+                                <a href="#" onClick={onSubmit}>Send</a>
                             </div>
                         </div>
                     </div>
@@ -134,8 +154,8 @@ const Edit_Action = () => {
                                     <label htmlFor="message" className="active">Remainder</label>
                                 </div>
                             </div>
-                            <div className="card-action center-align">
-                                <a href="#">Send</a>
+                            <div className="card-action center-align modal-close">
+                                <a href="#" onClick={onSubmit}>Send</a>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import {ADD_ACTION, DELETE_ACTION, GET_ACTIONS, SET_CURRENT, UPDATE_ACTION} from "./types";
+import {ADD_ACTION, CLEAR_CURRENT, DELETE_ACTION, GET_ACTIONS, SET_CURRENT, UPDATE_ACTION} from "./types";
 import {useSelector} from "react-redux";
 
 export const getActions = () => {
@@ -20,11 +20,6 @@ export const addActions = (data) => {
 
 export const updateAction= (data) => {
     return async dispatch => {
-
-        // const messages = useSelector((state) => state.workflow.messages);
-        //
-        // const data = messages.filter(item => item.id !== id);
-
         dispatch({
             type: UPDATE_ACTION,
             payload: data
@@ -40,6 +35,7 @@ export const setCurrent = (data) => {
         });
     };
 }
+
 
 export const deleteAction = (id) => {
     return async dispatch => {

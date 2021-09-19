@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector,useDispatch} from "react-redux";
 import {getActions} from "../redux/actions/actionsAction";
 import ActionItem from "./ActionItem";
@@ -9,7 +9,6 @@ const Home = () => {
 
     useEffect(()=>{
         dispatch(getActions());
-        console.log(messages[0]);
     },[messages]);
 
     return (
@@ -21,8 +20,8 @@ const Home = () => {
                 {messages.length === 0 ?
                     <p>No Actions</p>:
                     (
-                        messages.map((message) =>
-                            <ActionItem id={Math.random()} message={message} subject={message.email.subject} meeting={message.meeting.meeting} remainder={message.remainder.reminder} date={message.date} />
+                        messages.map((messages) =>
+                            <ActionItem key={messages.id} uid={messages.id} message={messages} name={messages.name} subject={messages.email.subject} meeting={messages.meeting.meeting} remainder={messages.remainder.remainder} date={messages.date} />
                         )
                     )
                 }
